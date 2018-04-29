@@ -1,10 +1,8 @@
----
-# Add global settings here
-
-# aws-cloudformation role settings
+# Stack settings
 Stack.Name: "aws-starter"
 Stack.Description: AWS Starter Template
 
+# Stack tags
 Stack.Tags:
   org:business:owner: Casecommons
   org:business:product: Product Description
@@ -30,5 +28,5 @@ Stack.Tags:
 #     Principal: "*"
 #     Resource: "*"
 
-# Define stack inputs as required
+# Define global stack inputs as required
 # Stack.Inputs.MyStackInput: "{{ 1000 }}"
