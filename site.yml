@@ -9,7 +9,6 @@
 - name: Stack Deployment
   hosts: "{{ env }}"
   environment: "{{ Sts.Credentials }}"
+  gather_facts: no
   roles:
     - aws-cloudformation
-
-# You can add post deployment plays here as required
