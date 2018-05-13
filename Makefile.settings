@@ -12,7 +12,8 @@ CODEBUILD_FLAG = $(if $(findstring /codebuild,$(ARGS)),-e 'Stack.BuildFolder=bui
 
 # Set shell
 .SILENT:
-SHELL=/bin/bash -e -o pipefail
+.ONESHELL:
+SHELL=/bin/bash
 
 # Process arguments
 ARGS = $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
