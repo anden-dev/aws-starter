@@ -8,6 +8,7 @@ phases:
     - make generate/acceptance /codebuild
     - make generate/demo /codebuild
     - make generate/sandbox /codebuild
+    - make generate/test /codebuild
 artifacts:
   files:
   - build/*

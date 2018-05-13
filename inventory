@@ -11,3 +11,6 @@ acceptance ansible_connection=local
 
 [sandbox]
 sandbox ansible_connection=local
+
+[test]
+test ansible_connection=local

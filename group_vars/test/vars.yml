@@ -1,0 +1,3 @@
+# STS settings
+Sts.Role: arn:aws:iam::084086434612:role/admin
+Sts.Region: us-east-1
