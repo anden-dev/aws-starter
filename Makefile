@@ -23,7 +23,6 @@ delete/%:
 	${INFO} "Delete complete"
 
 environment/%:
-	set -e -o pipefail
 	touch inventory
 	ansible-playbook -i localhost, environment.yml -e env=$*
 	${INFO} "Created environment $*"
