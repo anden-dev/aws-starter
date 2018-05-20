@@ -8,7 +8,7 @@ This repository provides a starter template for getting started creating AWS inf
 
 To run this playbook on your local machine, you must install the following prerequisites:
 
-- Ansible 2.4 or higher
+- Ansible 2.5 or higher
 - GNU Make 3.82 or higher
 - Python PIP package manager
 - The following PIP packages:
