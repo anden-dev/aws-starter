@@ -1,14 +1,16 @@
 version: 0.2
+
 phases:
   pre_build:
     commands:
-    - make roles
+      - make roles
   build:
     commands:
-    - make generate/acceptance /codebuild
-    - make generate/demo /codebuild
-    - make generate/sandbox /codebuild
-    - make generate/test /codebuild
+      - make generate/acceptance /codebuild
+      - make generate/demo /codebuild
+      - make generate/sandbox /codebuild
+      - make generate/test /codebuild
+
 artifacts:
   files:
-  - build/*
+    - build/*

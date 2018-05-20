@@ -1,0 +1,7 @@
+{% set file = lookup('file', 'inventory') %}
+{{ file }}
+{% if file is not search('\[' + env + '\]') %}
+
+[{{ env }}]
+{{ env }} ansible_connection=local
+{% endif %}

@@ -1,6 +1,6 @@
-# Sts settings
+# STS settings
 Sts.Role: arn:aws:iam::819728325594:role/admin
 Sts.Region: us-east-1
 
-# Stack inputs
+# Stack Inputs
 Stack.Inputs.MyStackInput: "{{ 1000 | random }}"

@@ -53,7 +53,7 @@ $ sudo -H /usr/bin/python -m pip install boto
 The workflow includes various make commands that help simplify day-to-day tasks:
 
 - `make roles` - installs Ansible Galaxy roles
-- `make environment/<environment>` - creates a new environment in the [`inventory`](./inventory) file and [`group_vars`](./group_vars) folder
+- `make environment/<environment>` - creates a new environment in the [`inventory`](./inventory) file and [`group_vars`](./group_vars) folder. Note that you will be prompted for the AWS account ID associated with the new environment.
 - `make generate/<environment>` - generates templates for the specified environment
 - `make deploy/<environment>` - generates and deploys templates for the specified environment
 

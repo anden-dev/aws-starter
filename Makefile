@@ -24,22 +24,6 @@ delete/%:
 
 environment/%:
 	set -e -o pipefail
-	environment=$*
 	touch inventory
-	if ! grep -q "^\[$$environment\]" inventory
-	then
-		mkdir -p group_vars/$$environment
-		echo -n > group_vars/$$environment/vars.yml
-		echo -e "\n[$$environment]" >> inventory
-		echo "$$environment ansible_connection=local" >> inventory
-		tee group_vars/$$environment/vars.yml << EOF > /dev/null
-		# STS settings
-		Sts.Role: arn:aws:iam::$(ACCOUNT_ID):role/admin
-		Sts.Region: $${REGION:-us-east-1}
-		EOF
-		tmp=$$(mktemp)
-		cat buildspec.yml | yq ".phases.build.commands += [\"make generate/$$environment /codebuild\"]" -y > "$$tmp" && mv "$$tmp" buildspec.yml
-		${INFO} "Created environment $$environment with account ID $(ACCOUNT_ID)"
-	else
-		${INFO} "Environment $$environment already exists"
-	fi
+	ansible-playbook -i localhost, environment.yml -e env=$*
+	${INFO} "Created environment $*"

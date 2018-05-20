@@ -1,0 +1,41 @@
+# Add new environment
+- name: Add environment to playbook
+  hosts: all
+  connection: local
+  gather_facts: no'
+  vars_prompt:
+    - name: "env"
+      prompt: "Enter environment name"
+      private: no
+    - name: "account_id"
+      prompt: "Enter AWS account ID"
+      private: no
+  tasks:
+    - name: render inventory template
+      template:
+        src: inventory.j2
+        dest: inventory
+    - name: create environment folder
+      file:
+        path: "group_vars/{{ env }}"
+        state: directory
+    - name: render environment settings
+      template:
+        src: vars.yml.j2
+        dest: "group_vars/{{ env }}/vars.yml"
+    - name: check buildspec.yml is present
+      stat:
+        path: buildspec.yml
+      register: buildspec
+    - name: check if environment is present in buildspec.yml
+      lineinfile:
+        path: buildspec.yml
+        line: "      - make generate/{{ env }} /codebuild"
+      check_mode: yes
+      register: environment_in_buildspec
+    - name: add environment to buildspec.yml
+      lineinfile:
+        path: buildspec.yml
+        line: "      - make generate/{{ env }} /codebuild"
+        insertafter: 'make generate'
+      when: buildspec.stat.exists and environment_in_buildspec.changed
